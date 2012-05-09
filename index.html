@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Supershape.js</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="description" content="Supershape.js visualizes the 3D super formula with three.js." />
+		<meta name="keywords" content="supershape, superformula, three.js, supershape.js, generative design" />
+		<link rel="canonical" href="http://supershape.ahoi.in/" />
+		<style type="text/css">
+			#container { position: absolute;top:0px;bottom:0px;left:0px;right:0px;overflow:hidden;  }
+			.info { position: absolute;top:10px;left:310px;overflow:hidden;color:white;font: 12px 'Lucida Grande', sans-serif; width:200px; line-height: 20px;}
+			.info a {color: white;text-decoration: none;text-transform: uppercase;}
+			.dg.a, .dg.a .close-button {width:300px !important;}
+		</style>
+  <script src="http://meemoo.org/meemoo/v1/meemoo-min.js"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+	</body>
+</html>
+<script src="lib/dat.gui.min.js"></script>	
+<script src="lib/three.js/Three.js"></script>
+<script src="lib/three.js/Detector.js"></script>
+
+<!-- <script src="lib/three.js/Stats.js"></script> -->
+<script src="lib/threex/THREEx.WindowResize.js"></script>
+<script src="lib/threex/THREEx.FullScreen.js"></script>
+<script src="lib/threex/THREEx.screenshot.js"></script>
+
+
+<script src="lib/three.js/ShaderExtras.js"></script>
+<script src="lib/three.js/postprocessing/EffectComposer.js"></script>
+<script src="lib/three.js/postprocessing/RenderPass.js"></script>
+<script src="lib/three.js/postprocessing/ShaderPass.js"></script>
+<script src="lib/three.js/postprocessing/MaskPass.js"></script>	
+
+
+<script src="js/variables.js" type="text/javascript"></script>
+<script src="js/objects.js" type="text/javascript"></script>
+<script src="js/eventHandler.js" type="text/javascript"></script>
+<script src="js/setup.js" type="text/javascript"></script>
+<script src="js/gui.js" type="text/javascript"></script>	
+<script type="text/javascript">
+  Meemoo.addInputs({
+  a1: { action: function (v) { a1 = v; object.update(); }, type: "number" },
+  b1: { action: function (v) { b1 = v; object.update(); }, type: "number" },
+  m1: { action: function (v) { m1 = v; object.update(); }, type: "number" },
+  n11: { action: function (v) { n11 = v; object.update(); }, type: "number" },
+  n21: { action: function (v) { n21 = v; object.update(); }, type: "number" },
+  n31: { action: function (v) { n31 = v; object.update(); }, type: "number" },
+  a2: { action: function (v) { a2 = v; object.update(); }, type: "number" },
+  b2: { action: function (v) { b2 = v; object.update(); }, type: "number" },
+  m2: { action: function (v) { m2 = v; object.update(); }, type: "number" },
+  n12: { action: function (v) { n12 = v; object.update(); }, type: "number" },
+  n22: { action: function (v) { n22 = v; object.update(); }, type: "number" },
+  n32: { action: function (v) { n32 = v; object.update(); }, type: "number" },
+
+  
+});
+	initApp();
+</script>
