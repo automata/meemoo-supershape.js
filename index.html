@@ -42,23 +42,35 @@
 <script src="js/setup.js" type="text/javascript"></script>
 <script src="js/gui.js" type="text/javascript"></script>	
 <script type="text/javascript">
-  Meemoo.addInputs({
-  a1: { action: function (v) { a1 = v; object.update(); }, type: "float" },
-  b1: { action: function (v) { b1 = v; object.update(); }, type: "float" },
-  m1: { action: function (v) { m1 = v; object.update(); }, type: "float" },
-  n11: { action: function (v) { n11 = v; object.update(); }, type: "float" },
-  n21: { action: function (v) { n21 = v; object.update(); }, type: "float" },
-  n31: { action: function (v) { n31 = v; object.update(); }, type: "float" },
-  a2: { action: function (v) { a2 = v; object.update(); }, type: "float" },
-  b2: { action: function (v) { b2 = v; object.update(); }, type: "float" },
-  m2: { action: function (v) { m2 = v; object.update(); }, type: "float" },
-  n12: { action: function (v) { n12 = v; object.update(); }, type: "float" },
-  n22: { action: function (v) { n22 = v; object.update(); }, type: "float" },
-  n32: { action: function (v) { n32 = v; object.update(); }, type: "float" },
-  color: { action: function (v) { color = v; object.update(); }, type: "string" },
-  bgcolor: { action: function (v) { bgcolor = v; object.update(); }, type: "string" }
 
-  
+  function scale(x, min_from, max_from, min_to, max_to) {
+    return((max_to-min_to)*(x-min_from)/(max_from-min_from));
+  }
+
+  Meemoo.addInputs({
+  a1: { action: function (v) { a1 = scale(v, 0, 127, 0, 5); object.update(); }, type: "float" },
+  b1: { action: function (v) { b1 = scale(v, 0, 127, 0, 5); object.update(); }, type: "float" },
+  m1: { action: function (v) { m1 = scale(v, 0, 127, 0, 20); object.update(); }, type: "float" },
+  n11: { action: function (v) { n11 = scale(v, 0, 127, 0, 100); object.update(); }, type: "float" },
+  n21: { action: function (v) { n21 = scale(v, 0, 127, -50, 100); object.update(); }, type: "float" },
+  n31: { action: function (v) { n31 = scale(v, 0, 127, -50, 100); object.update(); }, type: "float" },
+
+  a2: { action: function (v) { a2 = scale(v, 0, 127, 0, 5); object.update(); }, type: "float" },
+  b2: { action: function (v) { b2 = scale(v, 0, 127, 0, 5); object.update(); }, type: "float" },
+  m2: { action: function (v) { m2 = scale(v, 0, 127, 0, 20); object.update(); }, type: "float" },
+  n12: { action: function (v) { n12 = scale(v, 0, 127, 0, 100); object.update(); }, type: "float" },
+  n22: { action: function (v) { n22 = scale(v, 0, 127, -50, 100); object.update(); }, type: "float" },
+  n32: { action: function (v) { n32 = scale(v, 0, 127, -50, 100); object.update(); }, type: "float" },
+  color: { action: function (v) { color = "0x" + v.substring(1, v.length); console.log(color); object.update(); }, type: "string" },
+  bgcolor: { action: function (v) { backgroundColor = "0x" + v.substring(1, v.length);
+                                    renderer.setClearColor(new THREE.Color(backgroundColor)); }, type: "string" },
+  send: { action: function (b) { var dataURL = renderer.domElement.toDataURL();
+                                Meemoo.send("dataurl", dataURL); }, type: "bang" }
+}).addOutputs({
+  dataurl: {
+    type: "data:image"
+  }
 });
+
 	initApp();
 </script>
